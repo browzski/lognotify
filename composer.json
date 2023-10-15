@@ -1,0 +1,12 @@
+{
+    "name": "hanif/log-notify",
+    "description": "Log notifier",
+    "type": "library",
+    "license": "MIT License",
+    "autoload": {
+        "psr-4": {
+            "Hanif\\LogNotify\\": "src/"
+        }
+    },
+    "require": {}
+}
