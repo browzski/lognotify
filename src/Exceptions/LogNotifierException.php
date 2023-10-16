@@ -1,6 +1,6 @@
 <?php
 
-namespace Browszki\LogNotify\Exceptions;
+namespace LogNotify\Exceptions;
 
 use Exception;
 

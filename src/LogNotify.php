@@ -1,9 +1,10 @@
 <?php
 
-namespace Browszki\LogNotify;
+namespace LogNotify;
 
-use Browszki\LogNotify\Exceptions\LogNotifierException;
-use Browszki\LogNotify\Types\LogNotifyType;
+use LogNotify\Exceptions\LogNotifierException;
+use LogNotify\Types\LogNotifyType;
+use GuzzleHttp\Client;
 
 class LogNotify{
 
@@ -24,6 +25,23 @@ class LogNotify{
      * @var string|array
      */
     protected $channel;
+
+    /**
+     * HTTP client (GuzzleHttp)
+     */
+    protected $client;
+
+    /**
+     * Token for logging notifier integrations
+     * @var string
+     */
+    protected $token;
+
+    public function __construct(Client $client, $token)
+    {
+        $this->token = $token;
+        $this->client = $client;
+    }
 
     /**
      * Set the messages for logging notifier.
@@ -117,7 +135,36 @@ class LogNotify{
         if(!$this->isChannelSupport($this->channel))
             throw LogNotifierException::missingChannel();
         
-        //Logic Here
+        $this->notifyHandler();
+    }
+
+    private function notifyHandler(): void
+    {
+        if(strtolower($this->channel) === 'discord')
+            $this->discordNotify();
+
+        if(strtolower($this->channel) === 'telegram')
+            $this->telegramNotify();
+    }
+
+    private function discordNotify(): void
+    {
+        $discord_url = '';
+        $this->client->request(
+            'POST',
+            $discord_url,
+            [] 
+        );
+    }
+
+    private function telegramNotify(): void
+    {
+        $telegram_url = '';
+        $this->client->request(
+            'POST',
+            $telegram_url,
+            [] 
+        );
     }
 
 }

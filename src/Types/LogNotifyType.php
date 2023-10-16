@@ -1,6 +1,6 @@
 <?php
 
-namespace Browszki\LogNotify\Types;
+namespace LogNotify\Types;
 
 class LogNotifyType
 {

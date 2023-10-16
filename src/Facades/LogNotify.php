@@ -1,6 +1,6 @@
 <?php
 
-namespace Browszki\LogNotify\Facades;
+namespace LogNotify\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
